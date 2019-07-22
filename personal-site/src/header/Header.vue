@@ -3,10 +3,10 @@
     <Face class="face"/>
     <nav>
         <ul>
-            <li><a href="Developer.html">Developer</a></li>
-            <li><a href="Scientist.html">Scientist</a></li>
-            <li><a href="Graduate.html">Graduate</a></li>
-            <li><a href="Dancer.html">Dancer</a></li>
+            <li><router-link to="/">Developer</router-link></li>
+            <li><router-link to="/Scientist">Scientist</router-link></li>
+            <li><router-link to="/Graduate">Graduate</router-link></li>
+            <li><router-link to="/Dancer">Dancer</router-link></li>
         </ul>
     </nav>
 </div>
@@ -41,6 +41,7 @@ nav ul{
 nav ul li {
     display: inline-block;
     list-style-type: none;
+    margin: 0;
 }
 nav > ul > li > a {
     color: #ffffff;

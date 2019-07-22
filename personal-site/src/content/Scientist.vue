@@ -1,12 +1,12 @@
 <template>
   <div class="content-wrapper">
-    {{msg}}
+    Scientist
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Content',
+  name: 'Scientist',
   props: {
     msg: String,
   },
@@ -17,19 +17,5 @@ export default {
 <style land="scss" scoped>
 .content-wrapper {
   flex: 1 1 auto;
-}
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
 }
 </style>

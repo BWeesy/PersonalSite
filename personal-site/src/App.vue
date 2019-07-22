@@ -1,18 +1,18 @@
 <template>
   <div id="app">
     <Header/>
-    <Content msg="Content here"/>
+    <router-view />
   </div>
 </template>
 
 <script>
-import Content from './content/Content.vue';
+
 import Header from './header/Header.vue';
 
 export default {
   name: 'app',
   components: {
-    Header, Content,
+    Header,
   },
 };
 </script>

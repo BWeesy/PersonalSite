@@ -1,8 +1,10 @@
 <template>
 <div class="image-background">
-    <div class="image-cropper">
-        <img alt="Face" src="..\assets\Face.png">
-    </div>
+    <router-link to="/">
+        <div class="image-cropper">    
+            <img alt="Face" src="..\assets\Face.png">        
+        </div>
+    </router-link>
 </div>
 </template>
 
@@ -28,6 +30,7 @@ img {
     margin: 5px 5px;
 }
 
+router-link,
 .image-background {
     width: 150px;
     height: 150px;
