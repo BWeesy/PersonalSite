@@ -5,6 +5,7 @@
         <ul>
             <li><a href="Developer.html">Developer</a></li>
             <li><a href="Scientist.html">Scientist</a></li>
+            <li><a href="Graduate.html">Graduate</a></li>
             <li><a href="Dancer.html">Dancer</a></li>
         </ul>
     </nav>
