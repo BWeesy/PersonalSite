@@ -1,19 +1,21 @@
 <template>
   <div class="content-wrapper">
     Developer
+    <SwarmSim/>
   </div>
 </template>
 
 <script>
+import SwarmSim from './SwarmSim';
+
 export default {
   name: 'Developer',
-  props: {
-    msg: String,
+    components: {
+    SwarmSim,
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style land="scss" scoped>
 .content-wrapper {
   flex: 1 1 auto;
