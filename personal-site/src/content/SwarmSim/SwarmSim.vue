@@ -7,13 +7,15 @@
                 </div>
             </div>
         </div>
-        <button v-on:click="getNextFrame()" class="next-frame-button"> Next Frame </button>
+        <button v-on:click="startSim()" class="next-frame-button"> Start </button>
+        <button v-on:click="stopSim()" class="next-frame-button"> Stop </button>
         <button v-on:click="resetFrame()" class="next-frame-button"> Reset </button>
     </div>
 </template>
 
 <script>
 import Row from './SwarmSimRow';
+var interval;
 
 export default {
     name : "SwarmSim",
@@ -29,11 +31,21 @@ export default {
         }
     },
     methods:{
-        getNextFrame() {
-            this.$store.dispatch('nextFrame');
+        async startSim() {
+            if(!interval){
+                interval = setInterval(this.getNextFrame, 1500);
+            }         
+        },
+        stopSim() {
+            clearInterval(interval);
+            interval = null;
+        },
+        async getNextFrame() {
+            await this.$store.dispatch('nextFrame');
         },
         resetFrame() {
             this.$store.dispatch('initFrame');
+            this.stopGame();
         },
     }
 }
