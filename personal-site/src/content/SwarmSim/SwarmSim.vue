@@ -8,6 +8,7 @@
             </div>
         </div>
         <button v-on:click="getNextFrame()" class="next-frame-button"> Next Frame </button>
+        <button v-on:click="resetFrame()" class="next-frame-button"> Reset </button>
     </div>
 </template>
 
@@ -16,7 +17,7 @@ import Row from './SwarmSimRow';
 
 export default {
     name : "SwarmSim",
-    components: {
+    components: { 
         Row,
     },
     created() {
@@ -30,7 +31,10 @@ export default {
     methods:{
         getNextFrame() {
             this.$store.dispatch('nextFrame');
-        }
+        },
+        resetFrame() {
+            this.$store.dispatch('initFrame');
+        },
     }
 }
 </script>
