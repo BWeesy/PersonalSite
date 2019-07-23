@@ -15,7 +15,6 @@
         props: ['state'],
         computed: {
             currentState() {
-                console.log(this.state);
                 return this.state;
             }
         }

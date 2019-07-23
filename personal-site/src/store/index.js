@@ -18,6 +18,12 @@ export default new Vuex.Store({
             axios.get('/api/InitFrame')
                 .then(result => commit('saveNewFrame', result.data))
                 .catch(console.error);
+        },
+        nextFrame({commit}, frame) {
+            console.log(this.state.SwarmSimFrame);
+            axios.post('/api/NextFrame', this.state.SwarmSimFrame)
+            .then(result => commit('saveNewFrame', result.data))
+            .catch(console.error);
         }
     }
 });

@@ -1,11 +1,13 @@
 <template>
     <div>
-SWARMSIM!
         <div v-if="currentFrame.length > 0" class="frame-wrapper">
-            <div v-for="(row, index) in currentFrame" :key="index">
-                <Row :spaces="row" /> <br/>
+            <div class="frame">
+                <div v-for="(row, index) in currentFrame" :key="index">
+                    <Row :spaces="row" /> <br/>
+                </div>
             </div>
         </div>
+        <button v-on:click="getNextFrame()" class="next-frame-button"> Next Frame </button>
     </div>
 </template>
 
@@ -22,8 +24,12 @@ export default {
     },
     computed: {
         currentFrame() {
-            console.log(this.$store.state.SwarmSimFrame);
             return this.$store.state.SwarmSimFrame;
+        }
+    },
+    methods:{
+        getNextFrame() {
+            this.$store.dispatch('nextFrame');
         }
     }
 }
@@ -32,6 +38,10 @@ export default {
 <style lang="scss" scoped>
 .frame-wrapper {
     margin-top:100px;
-    float: center;
+    text-align: center
+}
+.frame {
+    display: inline-block;
+    width : 450px;
 }
 </style>
