@@ -1,4 +1,4 @@
-# personal-site
+# BenedictWesson personal site
 
 ## Project setup
 ```
