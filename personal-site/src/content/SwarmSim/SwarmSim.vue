@@ -32,11 +32,14 @@ export default {
         }
     },
     methods:{
-        async startGame() {         
-            interval = setInterval(this.getNextFrame,1500);
+        async startGame() {
+            if(!interval){
+                interval = setInterval(this.getNextFrame,1500);
+            }         
         },
         stopGame() {
             clearInterval(interval);
+            interval = null;
         },
         async getNextFrame() {
             await this.$store.dispatch('nextFrame');
