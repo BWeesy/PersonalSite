@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import SwarmSim from './SwarmSim';
+import SwarmSim from './SwarmSim/SwarmSim';
 
 export default {
   name: 'Developer',
