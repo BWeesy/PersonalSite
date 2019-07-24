@@ -64,22 +64,23 @@ export default {
             this.$store.dispatch('nextFrame')
                 .then(() => {
                     var callEnd = new Date();
-                    this.AddToTimesTakenBuffer(callEnd - callStart);
 
-                    //Wait the required amount of time before firing next call so it arrives in roughly 1500 from the last call return
                     var timerPromise =new Promise((resolve) => setTimeout(resolve, this.getTimeToWaitBeforeNextFrame));
                     timerPromise.then(() => {
-                            var roundTripEnd = new Date();
-                            this.AddToRoundTripBuffer(roundTripEnd - roundTripStart);
                             if(this.$store.state.swarmSimRunning) {
+                                var roundTripEnd = new Date();
+                                this.AddToTimesTakenBuffer(callEnd - callStart);
+                                this.AddToRoundTripBuffer(roundTripEnd - roundTripStart);
                                 this.getNextFrame();
                             }
                         });
                 });
         },
         resetFrame() {
+            this.stopSim();
             this.$store.dispatch('initFrame');
-            this.stopGame();
+            this.lastFiveCalls = [];
+            this.lastTenRoundTripTimes = [];
         },
         AddToTimesTakenBuffer (timeTaken) {
             this.lastFiveCalls.push(timeTaken);
