@@ -30,7 +30,6 @@ export default {
     },
     data (){
         return {
-            runSimFlag : false,
             intendedRate : 1500,
             lastFiveCalls : [],
             lastTenRoundTripTimes : []
@@ -51,39 +50,32 @@ export default {
         },
     },
     methods:{
-        async startSim() {
-            if (!this.runSimFlag) {
-                this.runSimFlag = true;
-                this.getNextFrame()
-            }        
+        startSim() {
+            this.$store.dispatch('startSwarmSim');
+            this.getNextFrame();
         },
         stopSim() {
-            this.runSimFlag = false;
+            this.$store.dispatch('stopSwarmSim');
         },
         async getNextFrame() {
-            //Start timers
             var roundTripStart = new Date();
             var callStart = roundTripStart;
+            //Make the call and chain the timerPromise to the end of the call promise
+            this.$store.dispatch('nextFrame')
+                .then(() => {
+                    var callEnd = new Date();
+                    this.AddToTimesTakenBuffer(callEnd - callStart);
 
-            //Start actual call to get next frame
-            var callPromise = this.$store.dispatch('nextFrame')
-            .then(() => {
-                var callEnd = new Date();
-                this.AddToTimesTakenBuffer(callEnd - callStart);
-            });
-
-            //Set a timer to give a minimum round trip time to limit frame rate
-            var timerPromise = new Promise((resolve) => setTimeout(resolve, this.getTimeToWaitBeforeNextFrame));
-
-            //Wait for both promises, then get next frame
-            Promise.all([timerPromise, callPromise])
-            .then(() => {
-                var roundTripEnd = new Date();
-                this.AddToRoundTripBuffer(roundTripEnd - roundTripStart);
-                if(this.runSimFlag) {
-                    this.getNextFrame();
-                }
-            });
+                    //Wait the required amount of time before firing next call so it arrives in roughly 1500 from the last call return
+                    var timerPromise =new Promise((resolve) => setTimeout(resolve, this.getTimeToWaitBeforeNextFrame));
+                    timerPromise.then(() => {
+                            var roundTripEnd = new Date();
+                            this.AddToRoundTripBuffer(roundTripEnd - roundTripStart);
+                            if(this.$store.state.swarmSimRunning) {
+                                this.getNextFrame();
+                            }
+                        });
+                });
         },
         resetFrame() {
             this.$store.dispatch('initFrame');
