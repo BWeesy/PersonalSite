@@ -52,26 +52,38 @@ export default {
     },
     methods:{
         async startSim() {
-            if (this.runSimFlag) {
-                return;
-            }
-            this.runSimFlag = true;
-            do{
-                var startTime = new Date();
-                var promise = new Promise((resolve) => setTimeout(resolve, this.getTimeToWaitBeforeNextFrame));
-                await promise.then(this.getNextFrame);
-                var endTime = new Date();
-                this.AddToRoundTripBuffer(endTime - startTime);
-            } while (this.runSimFlag)         
+            if (!this.runSimFlag) {
+                this.runSimFlag = true;
+                this.getNextFrame()
+            }        
         },
         stopSim() {
             this.runSimFlag = false;
         },
         async getNextFrame() {
-            var startTime = new Date();
-            await this.$store.dispatch('nextFrame');
-            var endTime = new Date();
-            this.AddToTimesTakenBuffer(endTime - startTime);
+            //Start timers
+            var roundTripStart = new Date();
+            var callStart = roundTripStart;
+
+            //Start actual call to get next frame
+            var callPromise = this.$store.dispatch('nextFrame')
+            .then(() => {
+                var callEnd = new Date();
+                this.AddToTimesTakenBuffer(callEnd - callStart);
+            });
+
+            //Set a timer to give a minimum round trip time to limit frame rate
+            var timerPromise = new Promise((resolve) => setTimeout(resolve, this.getTimeToWaitBeforeNextFrame));
+
+            //Wait for both promises, then get next frame
+            Promise.all([timerPromise, callPromise])
+            .then(() => {
+                var roundTripEnd = new Date();
+                this.AddToRoundTripBuffer(roundTripEnd - roundTripStart);
+                if(this.runSimFlag) {
+                    this.getNextFrame();
+                }
+            });
         },
         resetFrame() {
             this.$store.dispatch('initFrame');
