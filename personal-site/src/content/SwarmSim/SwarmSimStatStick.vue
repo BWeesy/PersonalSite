@@ -35,12 +35,12 @@
 $intended-time-colour: green;
 $call-time-colour: red;
 $wait-time-colour: yellow;
-$round-trip-time-colour: blue;
+$round-trip-time-colour: orange;
 .total-time-bar{
     float: left;
 }
 .bar {
-  width: 10px;  
+  width: 10px;
 }
 .intended-time-bar{
     float: left;
