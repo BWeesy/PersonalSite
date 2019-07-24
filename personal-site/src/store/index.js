@@ -7,11 +7,15 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state:{
         SwarmSimFrame: [], //Array of Arrays, closest thing to 2D
+        swarmSimRunning : false,
     },
     mutations:{
         saveNewFrame(state, frame){
             state.SwarmSimFrame = frame;
         },
+        saveSwarmSimRunningState(state, running){
+            state.swarmSimRunning = running;
+        }
     },
     actions: {
         initFrame({commit}){
@@ -20,11 +24,17 @@ export default new Vuex.Store({
             .then(result => commit('saveNewFrame', result.data))
                 .catch(console.error);
         },
-        async nextFrame({commit}) {
+        nextFrame({commit}) {
             var url = process.env.NODE_ENV == 'development' ? '/api/NextFrame' : 'https://swarmsim.azurewebsites.net/api/NextFrame?code=uwc7JOsp9hhpi9eLEItGjQh4fLAsPOEe5cMI3qBK8EpNybVpVjv/YQ==';
-            await axios.post(url, this.state.SwarmSimFrame, { crossdomain: true })
+            return axios.post(url, this.state.SwarmSimFrame, { crossdomain: true })
             .then(result => commit('saveNewFrame', result.data))
             .catch(console.error);
-        }
+        },
+        startSwarmSim({commit}){
+            commit('saveSwarmSimRunningState', true);
+        },
+        stopSwarmSim({commit}){
+            commit('saveSwarmSimRunningState', false);
+        },
     }
 });
