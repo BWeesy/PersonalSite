@@ -52,6 +52,9 @@ export default {
     },
     methods:{
         async startSim() {
+            if (this.runSimFlag) {
+                return;
+            }
             this.runSimFlag = true;
             do{
                 var startTime = new Date();
