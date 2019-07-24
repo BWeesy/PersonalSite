@@ -1,9 +1,10 @@
 <template>
-    <div>
+<div>
+    <div v-if="currentFrame.length > 0">
         <div class="stat-stick-wrapper">
             <StatStick class="stat-stick" :intendedTime = this.intendedRate :callTime = this.getAverageCallTime :waitTime= this.getTimeToWaitBeforeNextFrame :roundTripTime = this.getAverageRoundTripTime />
         </div>
-        <div v-if="currentFrame.length > 0" class="frame-wrapper">
+        <div class="frame-wrapper">
             <div class="frame">
                 <div v-for="(row, index) in currentFrame" :key="index">
                     <Row :spaces="row" /> <br/>
@@ -16,6 +17,10 @@
             </div>
         </div>
     </div>
+    <div v-if="!currentFrame.length > 0">
+        No Frame found
+    </div>
+</div>
 </template>
 
 <script>
@@ -32,7 +37,7 @@ export default {
     },
     data (){
         return {
-            intendedRate : 1500,
+            intendedRate : 1000,
             lastFiveCalls : [],
             lastTenRoundTripTimes : []
         }

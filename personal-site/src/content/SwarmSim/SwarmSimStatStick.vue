@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="bar intended-time-bar"/>
+        <div class="bar intended-time-bar" :style = "intendedTimeHeight"/>
         <div class="total-time-bar">
             <div class="bar call-time-bar" :style = "callTimeHeight"/>
             <div class="bar wait-time-bar" :style = "waitTimeHeight"/>
@@ -19,14 +19,20 @@
         props: ['intendedTime', 'callTime', 'waitTime', 'roundTripTime'],
         computed:{
             callTimeHeight() {
-                return 'height: ' + 450 * this.callTime/this.intendedTime + 'px';
+                return 'height: ' + 450 * this.callTime/this.maximumTime + 'px';
             },
             waitTimeHeight(){
-                return 'height: ' + 450 * this.waitTime/this.intendedTime + 'px';
+                return 'height: ' + 450 * this.waitTime/this.maximumTime + 'px';
             },
             roundTripTimeHeight(){
-                return 'height: ' + 450 * this.roundTripTime/this.intendedTime + 'px';
-            }
+                return 'height: ' + 450 * this.roundTripTime/this.maximumTime + 'px';
+            },
+           intendedTimeHeight(){
+                return 'height: ' + 450 * this.intendedTime/this.maximumTime + 'px';
+            },
+            maximumTime(){
+                return Math.max(this.intendedTime, this.roundTripTime, this.callTime, this.waitTime);
+            },            
         }
     }
 </script>
@@ -44,7 +50,6 @@ $round-trip-time-colour: orange;
 }
 .intended-time-bar{
     float: left;
-    height: 450px;
     background-color: $intended-time-colour;
 }
 .call-time-bar{
