@@ -1,29 +1,31 @@
 <template>
     <div>
+        <div class="stat-stick-wrapper">
+            <StatStick class="stat-stick" :intendedTime = this.intendedRate :callTime = this.getAverageCallTime :waitTime= this.getTimeToWaitBeforeNextFrame :roundTripTime = this.getAverageRoundTripTime />
+        </div>
         <div v-if="currentFrame.length > 0" class="frame-wrapper">
             <div class="frame">
                 <div v-for="(row, index) in currentFrame" :key="index">
                     <Row :spaces="row" /> <br/>
                 </div>
+                <div>
+                    <button v-on:click="startSim()" class="button"> Start </button>
+                    <button v-on:click="stopSim()" class="button"> Stop </button>
+                    <button v-on:click="resetFrame()" class="button"> Reset </button>
+                </div>
             </div>
-            <div>Intended time per frame {{intendedRate}} ms</div>
-            <div>Average Time Taken for make request over last 5 frames {{getAverageCallTime}} ms</div>
-            <div>Time waiting before next call {{getTimeToWaitBeforeNextFrame}} ms</div>
-            <div>Achieved average round trip time of {{getAverageRoundTripTime}} ms over last 10 calls </div>
         </div>
-        <button v-on:click="startSim()" class="next-frame-button"> Start </button>
-        <button v-on:click="stopSim()" class="next-frame-button"> Stop </button>
-        <button v-on:click="resetFrame()" class="next-frame-button"> Reset </button>
     </div>
 </template>
 
 <script>
 import Row from './SwarmSimRow';
+import StatStick from './SwarmSimStatStick';
 
 export default {
     name : "SwarmSim",
     components: { 
-        Row,
+        Row, StatStick
     },
     created() {
         this.$store.dispatch('initFrame');
@@ -99,9 +101,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../shared/colour-palette.scss";
+
 .frame-wrapper {
-    margin: 100px auto;
+    margin: 100px auto 0px auto;
     text-align: center;
+}
+.stat-stick-wrapper {
+    float: right;
+}
+.stat-stick {
+    float: right;
 }
 .frame {
     display: inline-block;
