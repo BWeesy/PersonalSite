@@ -122,7 +122,7 @@ export default {
     margin: 1% 5%;
     padding: 10px;
     background-color: $highlight-colour;
-    border-radius: 50px 0% 102px 0px;
+    border-radius: 45px 0 102px 0;
 }
 .frame {
     margin: 0 auto;

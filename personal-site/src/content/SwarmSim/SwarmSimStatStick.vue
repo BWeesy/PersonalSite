@@ -52,24 +52,25 @@
 <style lang="scss" scoped>
 @import "../../shared/colour-palette.scss";
 
-$intended-time-colour: green;
-$call-time-colour: red;
-$wait-time-colour: yellow;
-$round-trip-time-colour: orange;
+$intended-time-colour: #6e9086;
+$call-time-colour: #de356a;
+$wait-time-colour: #fdc8b7;
+$round-trip-time-colour: #f67e7d;
 
 .key-wrapper{
-    margin: auto 5% 0 0;
     background-color: $emboss-colour;
-    padding: 15px 15px 15px 15px;
-    border-radius: 0% 0% 102px 0px;
+    padding: 0 15px 15px 15px;
+    border-radius: 0 0 102px 0;
     display: flex;
     flex-flow: row wrap;
 }
 
 .bars-wrapper {
-    margin: auto 5%;
+    padding: 5% 5% 0 5%;
     display: flex;
     flex-direction: column;
+    background-color: $emboss-colour;
+    border-radius: 45px 0 0 0;
 }
 
 .total-time-bar{
