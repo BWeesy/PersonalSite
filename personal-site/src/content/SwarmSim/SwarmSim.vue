@@ -118,14 +118,10 @@ export default {
 }
 .stat-stick-wrapper {
     float: right;
-    margin: 5% auto;
+    margin: 5% 5%;
     padding: 10px;
     background-color: $highlight-colour;
     border-radius: 0% 0% 102px 0px;
-    width: 80%;
-}
-.stat-stick {
-    float: right;
 }
 .frame {
     display: inline-block;
