@@ -1,11 +1,6 @@
 <template>
 <div>
-        <div v-if="this.state == 0" class="wall" :style = "SpaceSize"></div>
-        <div v-if="this.state == 1" class="unexplored" :style = "SpaceSize"></div>
-        <div v-if="this.state == 2" class="explored" :style = "SpaceSize + ExploredOpacity"></div>
-        <div v-if="this.state == 3" class="ungrouped-drone" :style = "SpaceSize"></div>
-        <div v-if="this.state == 4" class="leader-drone" :style = "SpaceSize"></div>
-        <div v-if="this.state == 5" class="subordinate-drone" :style = "SpaceSize"></div>
+        <div :class="getClass" :style = "getStyle"></div>
 </div>
 </template>
 
@@ -31,17 +26,17 @@
             getClass(){
                 switch (this.state) {
                     case 0:
-                        return 'wall';
+                        return 'space wall';
                     case 1:
-                        return 'unexplored';
+                        return 'space unexplored';
                     case 2:
-                        return 'explored';
+                        return 'space explored';
                     case 3:
-                        return 'ungrouped-drone';
+                        return 'space ungrouped-drone';
                     case 4:
-                        return 'leader-drone';
+                        return 'space leader-drone';
                     case 5:
-                        return 'subordinate-drone';
+                        return 'space subordinate-drone';
                     default:
                         return '';
                 }
@@ -76,6 +71,9 @@
 
 <style lang="scss" scoped>
 @import "./swarmsim-palette.scss";
+.space{
+    transition: background-color 0.25s ease-in-out;
+}
 .wall{
     background-color: $wall;
 }
@@ -94,13 +92,5 @@
 .subordinate-drone{
     background-color:$subordinate-drone;
 }
-.fade-enter-active {
-  transition: opacity 1s;
-}
-.fade-leave-active {
-  transition: opacity 1s;
-}
-.fade-enter .fade-leave /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
+
 </style>
