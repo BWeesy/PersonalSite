@@ -2,7 +2,7 @@
     <div class="space-wrapper">
         <div v-if="this.state == 0" class="space wall"></div>
         <div v-if="this.state == 1" class="space unexplored"></div>
-        <div v-if="this.state == 2" :style = "getExploredOpacity" class="space explored"></div>
+        <div v-if="this.state == 2" :style = "getSpaceSize + getExploredOpacity" class="explored"></div>
         <div v-if="this.state == 3" class="space ungrouped-drone"></div>
         <div v-if="this.state == 4" class="space leader-drone"></div>
         <div v-if="this.state == 5" class="space subordinate-drone"></div>
@@ -22,7 +22,10 @@
             },
             getExploredOpacity(){
                 return 'opacity: ' + Math.max((this.activity ? this.activity : 0)/100,0.1);
-            }
+            },
+            getSpaceSize(){
+                return 'height: ' + 18 + 'px ; width: ' + 18+ 'px;';
+            },
         }
     }
 </script>

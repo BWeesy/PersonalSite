@@ -6,9 +6,7 @@
         </div>
         <div v-if="currentFrame.length > 0" class="frame-wrapper">
             <div class="frame">
-                <div v-for="(row, index) in currentFrame" :key="index">
-                    <Row :spaces="row" /> <br/>
-                </div>
+                <Row v-for="(row, index) in currentFrame" :key="index" :spaces="row" /> <br/>
                 <div>
                     <button v-on:click="startSim()" class="button"> Start </button>
                     <button v-on:click="stopSim()" class="button"> Stop </button>
@@ -127,8 +125,11 @@ export default {
     border-radius: 50px 0% 102px 0px;
 }
 .frame {
-    display: inline-block;
-    width : 450px;
     margin: 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+}
+.row{
+    flex-flow: row nowrap;
 }
 </style>
