@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div v-if="currentFrame.length > 0">
+    <div v-if="currentFrame.length > 0" class = "swarmsim-wrapper">
         <div class="stat-stick-wrapper">
             <StatStick class="stat-stick" :intendedTime = this.intendedRate :callTime = this.getAverageCallTime :waitTime= this.getTimeToWaitBeforeNextFrame :roundTripTime = this.getAverageRoundTripTime />
         </div>
@@ -108,12 +108,21 @@ export default {
 <style lang="scss" scoped>
 @import "../../shared/colour-palette.scss";
 
+.swarmsim-wrapper{
+    display :flex;
+    flex-direction: column;
+}
 .frame-wrapper {
-    margin: 100px auto 0px auto;
     text-align: center;
+    margin: auto;
 }
 .stat-stick-wrapper {
     float: right;
+    margin: 5% auto;
+    padding: 10px;
+    background-color: $highlight-colour;
+    border-radius: 0% 0% 102px 0px;
+    width: 80%;
 }
 .stat-stick {
     float: right;
