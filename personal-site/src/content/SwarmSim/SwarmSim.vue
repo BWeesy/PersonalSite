@@ -130,4 +130,22 @@ export default {
     width : 450px;
     margin: 0 auto;
 }
+.button {
+    margin: 1% 1%;
+    background-color: $highlight-colour;
+    border: 1px solid $highlight-colour;
+    color: whitesmoke;
+    border-radius: 10% 0% 15% 0px;
+    padding: 0.5em 1em;
+    font-size:28px;
+
+    &:hover{
+        background-color: $highlight-off-colour;
+        border: 1px solid $highlight-off-colour;
+    }
+    &:active{
+        background-color: $highlight-off-colour;
+        border: 1px solid $highlight-colour;
+    }
+}
 </style>
