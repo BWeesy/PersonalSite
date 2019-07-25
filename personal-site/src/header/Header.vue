@@ -1,10 +1,12 @@
 <template>
 <div>
     <Face class="face"/>
-    <nav>
+    <nav class="corner">
         <ul>
             <li><router-link to="/">Developer</router-link></li>
             <li><router-link to="/Scientist">Scientist</router-link></li>
+        </ul>
+        <ul class="corner">
             <li><router-link to="/Graduate">Graduate</router-link></li>
             <li><router-link to="/Dancer">Dancer</router-link></li>
         </ul>
@@ -30,13 +32,18 @@ export default {
 }
 nav {
     background-color: $highlight-colour;
-    margin: 0;
-    overflow: hidden;
+    display: flex;
+    transform: translateX(-12px);
+    border-radius: 0 0 50px 0;
 }
 nav ul{
     float:left;
     margin: 0;
     padding: 0;
+    background-color: $highlight-colour;
+}
+.corner{
+    border-radius: 0 0 50px 0;
 }
 nav ul li {
     display: inline-block;
@@ -45,7 +52,6 @@ nav ul li {
 }
 nav > ul > li > a {
     color: #ffffff;
-    background-color: $highlight-colour;
     display: block;
     line-height: 2em;
     padding: 0.5em 0.5em;
