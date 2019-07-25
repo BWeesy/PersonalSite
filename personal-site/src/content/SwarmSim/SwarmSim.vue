@@ -32,7 +32,14 @@ export default {
         Row, StatStick
     },
     created() {
-        this.$store.dispatch('initFrame');
+        if(!this.$store.state.SwarmSimFrame || this.$store.state.SwarmSimFrame.length == 0){
+            this.$store.dispatch('initFrame');
+        } else{
+            this.startSim();
+        }
+    },
+    beforeDestroy(){
+        this.stopSim();
     },
     data (){
         return {
