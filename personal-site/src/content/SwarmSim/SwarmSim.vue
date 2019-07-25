@@ -112,10 +112,10 @@ export default {
 .swarmsim-wrapper{
     display :flex;
     flex-direction: column;
+    align-items: center;
 }
 .frame-wrapper {
-    text-align: center;
-    margin: auto;
+    margin: 1% 5%;
 }
 .stat-stick-wrapper {
     float: right;

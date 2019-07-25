@@ -11,19 +11,15 @@
     <div class="key-wrapper">
         <div class = "label-wrapper">
             <div class = "swatch intended-swatch"/>
-            <div class="label intended-label">Intended time per frame {{intendedTime}} ms</div>
-        </div>
-        <div class = "label-wrapper">
+            <div class="label intended-label">Intended time <br/> {{intendedTime}} ms</div>
             <div class = "swatch call-swatch"/>
-            <div class="label call-label">Average Time Taken for make request {{callTime}} ms</div>
+            <div class="label call-label">Request time <br/> {{callTime}} ms</div>
         </div>
         <div class = "label-wrapper">
             <div class = "swatch wait-swatch"/>
-            <div class="label wait-label">Time waiting before next call {{waitTime}} ms</div>
-        </div>
-        <div class = "label-wrapper">
+            <div class="label wait-label">Waiting time <br/> {{waitTime}} ms</div>
             <div class = "swatch round-trip-swatch"/>
-            <div class="label round-trip-label">Achieved average round trip time of {{roundTripTime}} ms </div>
+            <div class="label round-trip-label">Round trip time <br/> {{roundTripTime}} ms </div>
         </div>
     </div>
 </div>
@@ -62,14 +58,12 @@ $wait-time-colour: yellow;
 $round-trip-time-colour: orange;
 
 .key-wrapper{
-    float : left;
-    margin: auto 5%;
+    margin: auto 5% 0 0;
     background-color: $emboss-colour;
-    padding: 5px 5px 5px 5px;
+    padding: 15px 15px 15px 15px;
     border-radius: 0% 0% 102px 0px;
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    flex-flow: row wrap;
 }
 
 .bars-wrapper {
@@ -100,14 +94,16 @@ background-color: $round-trip-time-colour;
 }
 .label-wrapper{
     display: flex;
-    flex-direction: row;
+    flex-basis: 0;
+    flex-grow: 1;
+    padding: 5px;
 }
 .swatch{
     height: 2em;
     width: 10%;
     margin: 0;
     float: left;
-    flex-basis : 20px
+    flex-basis: 20px;
 }
 .intended-swatch{
     background-color: $intended-time-colour;
