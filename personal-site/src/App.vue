@@ -25,6 +25,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: $text-colour;
+  display: flex;
+  flex-direction: column;
 }
 html,
 body  {
