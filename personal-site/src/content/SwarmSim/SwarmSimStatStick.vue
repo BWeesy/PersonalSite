@@ -80,9 +80,11 @@ $round-trip-time-colour: #f67e7d;
 
 .bar {
   height: 10px;
+  transition: width 0.25s ease-in-out;
 }
 .intended-time-bar{
     background-color: $intended-time-colour;
+    border-radius: 0 5px 0 0;
 }
 .call-time-bar{
     background-color: $call-time-colour;
@@ -92,6 +94,7 @@ $round-trip-time-colour: #f67e7d;
 }
 .round-trip-time-bar{
 background-color: $round-trip-time-colour;
+border-radius: 0 0 5px 0;
 }
 .label-wrapper{
     display: flex;
@@ -103,8 +106,8 @@ background-color: $round-trip-time-colour;
     height: 2em;
     width: 10%;
     margin: 0;
-    float: left;
     flex-basis: 20px;
+    border-radius: 5px;
 }
 .intended-swatch{
     background-color: $intended-time-colour;
