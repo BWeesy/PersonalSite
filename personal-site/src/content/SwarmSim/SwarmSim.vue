@@ -64,8 +64,10 @@ export default {
     },
     methods:{
         startSim() {
-            this.$store.dispatch('startSwarmSim');
-            this.getNextFrame();
+            if(!this.$store.state.swarmSimRunning){
+                this.$store.dispatch('startSwarmSim');
+                this.getNextFrame();
+            }
         },
         stopSim() {
             this.$store.dispatch('stopSwarmSim');
