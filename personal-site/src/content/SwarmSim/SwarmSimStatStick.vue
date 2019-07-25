@@ -98,8 +98,7 @@ border-radius: 0 0 5px 0;
 }
 .label-wrapper{
     display: flex;
-    flex-basis: 0;
-    flex-grow: 1;
+    flex-basis: 100%;
     padding: 5px;
 }
 .swatch{
