@@ -56,5 +56,6 @@ nav > ul > li > a {
     line-height: 2em;
     padding: 0.5em 0.5em;
     text-decoration: none;
+    font-weight: bold;
 }
 </style>
