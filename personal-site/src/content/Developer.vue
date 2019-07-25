@@ -1,7 +1,5 @@
 <template>
-  <div class="content-wrapper">
-    <SwarmSim/>
-  </div>
+  <SwarmSim/>
 </template>
 
 <script>
@@ -16,7 +14,4 @@ export default {
 </script>
 
 <style land="scss" scoped>
-.content-wrapper {
-  flex: 1 1 auto;
-}
 </style>
