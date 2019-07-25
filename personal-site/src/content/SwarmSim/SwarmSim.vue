@@ -18,7 +18,8 @@
         </div>
     </div>
     <div v-if="!currentFrame.length > 0">
-        No Frame found
+        <div class="loader"/>
+        <button v-if="this.$store.state.swarmSimFailed" v-on:click="resetFrame()" class="button"> Retry </button>
     </div>
 </div>
 </template>
@@ -107,6 +108,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../shared/colour-palette.scss";
+@import "../../shared/loading-spinner.scss";
 
 .swarmsim-wrapper{
     display :flex;

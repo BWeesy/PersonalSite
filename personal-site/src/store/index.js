@@ -8,6 +8,7 @@ export default new Vuex.Store({
     state:{
         SwarmSimFrame: [], //Array of Arrays, closest thing to 2D
         swarmSimRunning : false,
+        swarmSimFailed : false,
     },
     mutations:{
         saveNewFrame(state, frame){
@@ -15,20 +16,37 @@ export default new Vuex.Store({
         },
         saveSwarmSimRunningState(state, running){
             state.swarmSimRunning = running;
+        },
+        saveSwarmSimFailureState(state, failed){
+            state.swarmSimFailed = failed;
         }
     },
     actions: {
         initFrame({commit}){
+            commit('saveNewFrame', []);
+
             var url = process.env.NODE_ENV == 'development' ? '/api/InitFrame' : 'https://swarmsim.azurewebsites.net/api/InitFrame?code=GiWQXWY1cb/nO4Mw9TOVuElPZGLidWSV0ulanCq6TRTDyKxGwXMI0w==';
             axios.get(url, { crossdomain: true })
-            .then(result => commit('saveNewFrame', result.data))
-                .catch(console.error);
+            .then(result => {
+                commit('saveNewFrame', result.data);
+                commit('saveSwarmSimFailureState', false);
+            })
+            .catch(() => {
+                commit('saveSwarmSimRunningState', false);
+                commit('saveSwarmSimFailureState', true);
+            });
         },
         nextFrame({commit}) {
             var url = process.env.NODE_ENV == 'development' ? '/api/NextFrame' : 'https://swarmsim.azurewebsites.net/api/NextFrame?code=uwc7JOsp9hhpi9eLEItGjQh4fLAsPOEe5cMI3qBK8EpNybVpVjv/YQ==';
             return axios.post(url, this.state.SwarmSimFrame, { crossdomain: true })
-            .then(result => commit('saveNewFrame', result.data))
-            .catch(console.error);
+            .then(result => {
+                commit('saveNewFrame', result.data);
+                commit('saveSwarmSimFailureState', false);
+            })
+            .catch(() => {
+                commit('saveSwarmSimRunningState', false);
+                commit('saveSwarmSimFailureState', true);
+            });
         },
         startSwarmSim({commit}){
             commit('saveSwarmSimRunningState', true);
