@@ -1,10 +1,10 @@
 <template>
 <div>
-    <div v-if="currentFrame.length > 0" class = "swarmsim-wrapper">
+    <div class = "swarmsim-wrapper">
         <div class="stat-stick-wrapper">
             <StatStick class="stat-stick" :intendedTime = this.intendedRate :callTime = this.getAverageCallTime :waitTime= this.getTimeToWaitBeforeNextFrame :roundTripTime = this.getAverageRoundTripTime />
         </div>
-        <div class="frame-wrapper">
+        <div v-if="currentFrame.length > 0" class="frame-wrapper">
             <div class="frame">
                 <div v-for="(row, index) in currentFrame" :key="index">
                     <Row :spaces="row" /> <br/>

@@ -22,7 +22,7 @@
             <div class="label wait-label">Time waiting before next call {{waitTime}} ms</div>
         </div>
         <div class = "label-wrapper">
-            <div class = "swatch round-swatch"/>
+            <div class = "swatch round-trip-swatch"/>
             <div class="label round-trip-label">Achieved average round trip time of {{roundTripTime}} ms </div>
         </div>
     </div>
@@ -35,16 +35,16 @@
         props: ['intendedTime', 'callTime', 'waitTime', 'roundTripTime'],
         computed:{
             callTimeWidth() {
-                return 'width: ' + 450 * this.callTime/this.maximumTime + 'px';
+                return 'width: ' + 100 * this.callTime/this.maximumTime + '%';
             },
             waitTimeWidth(){
-                return 'width: ' + 450 * this.waitTime/this.maximumTime + 'px';
+                return 'width: ' + 100 * this.waitTime/this.maximumTime + '%';
             },
             roundTripTimeWidth(){
-                return 'width: ' + 450 * this.roundTripTime/this.maximumTime + 'px';
+                return 'width: ' + 100 * this.roundTripTime/this.maximumTime + '%';
             },
            intendedTimeWidth(){
-                return 'width: ' + 450 * this.intendedTime/this.maximumTime + 'px';
+                return 'width: ' + 100 * this.intendedTime/this.maximumTime + '%';
             },
             maximumTime(){
                 return Math.max(this.intendedTime, this.roundTripTime, this.callTime, this.waitTime);
@@ -73,7 +73,6 @@ $round-trip-time-colour: orange;
 }
 
 .bars-wrapper {
-    width: 450px;
     margin: auto 5%;
     display: flex;
     flex-direction: column;

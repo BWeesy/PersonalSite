@@ -1,6 +1,5 @@
 <template>
   <div class="content-wrapper">
-    Developer
     <SwarmSim/>
   </div>
 </template>
