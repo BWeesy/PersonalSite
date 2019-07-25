@@ -41,26 +41,16 @@
                         return '';
                 }
             },
-            SpaceSize(){
-                return 'height: ' + 50/this.spacesInRow + 'vh ; width: ' + 50/this.spacesInRow + 'vh;';
-            },
-            ExploredOpacity(){
-                return 'opacity: ' + Math.max((this.activity ? this.activity : 0)/100,0.1);
-            },
             getStyle() {
                 switch (this.state) {
                     case 0:
-                        return this.getSpaceSize();
                     case 1:
+                    case 3:
+                    case 4:
+                    case 5:
                         return this.getSpaceSize();
                     case 2:
                         return this.getSpaceSize() + this.getExploredOpacity();
-                    case 3:
-                        return this.getSpaceSize();
-                    case 4:
-                        return this.getSpaceSize();
-                    case 5:
-                        return this.getSpaceSize();
                     default:
                         return "";
                 }
