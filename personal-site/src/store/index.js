@@ -9,6 +9,7 @@ export default new Vuex.Store({
         SwarmSimFrame: [], //Array of Arrays, closest thing to 2D
         swarmSimRunning : false,
         swarmSimFailed : false,
+        swarmSimFrameRate : 1000,
     },
     mutations:{
         saveNewFrame(state, frame){
@@ -19,6 +20,9 @@ export default new Vuex.Store({
         },
         saveSwarmSimFailureState(state, failed){
             state.swarmSimFailed = failed;
+        },
+        saveSwarmSimFrameRate(state, rate){
+            state.swarmSimFrameRate = rate;
         }
     },
     actions: {
@@ -54,5 +58,8 @@ export default new Vuex.Store({
         stopSwarmSim({commit}){
             commit('saveSwarmSimRunningState', false);
         },
+        setFrameRate({commit}, rate){
+            commit('saveSwarmSimFrameRate', rate);
+        }
     }
 });
