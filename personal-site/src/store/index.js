@@ -28,6 +28,7 @@ export default new Vuex.Store({
     actions: {
         initFrame({commit}){
             commit('saveNewFrame', []);
+            commit('saveSwarmSimFrameRate', 1000);
 
             var url = process.env.NODE_ENV == 'development' ? '/api/InitFrame' : 'https://swarmsim.azurewebsites.net/api/InitFrame?code=GiWQXWY1cb/nO4Mw9TOVuElPZGLidWSV0ulanCq6TRTDyKxGwXMI0w==';
             axios.get(url, { crossdomain: true })
