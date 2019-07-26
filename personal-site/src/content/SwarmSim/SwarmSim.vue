@@ -14,22 +14,24 @@
                 </div>
             </div>
         </div>
+        <div v-if="!currentFrame.length > 0">
+            <div class="loader"/>
+            <button v-if="this.$store.state.swarmSimFailed" v-on:click="resetFrame()" class="button"> Retry </button>
+        </div>
     </div>
-    <div v-if="!currentFrame.length > 0">
-        <div class="loader"/>
-        <button v-if="this.$store.state.swarmSimFailed" v-on:click="resetFrame()" class="button"> Retry </button>
-    </div>
+    <Description/>
 </div>
 </template>
 
 <script>
 import Row from './SwarmSimRow';
 import StatStick from './SwarmSimStatStick';
+import Description from './SwarmSimDescription'; 
 
 export default {
     name : "SwarmSim",
     components: { 
-        Row, StatStick
+        Row, StatStick, Description
     },
     created() {
         if(!this.$store.state.SwarmSimFrame || this.$store.state.SwarmSimFrame.length == 0){
@@ -125,6 +127,8 @@ export default {
 }
 .frame-wrapper {
     margin: 1% 5%;
+    border: 10px solid $highlight-colour;
+    border-radius: 45px 0 102px 0;
 }
 .stat-stick-wrapper {
     float: right;
@@ -137,6 +141,9 @@ export default {
     margin: 0 auto;
     display: flex;
     flex-flow: column nowrap;
+    border: 15px solid $emboss-colour;
+    background-color: $emboss-colour;
+    border-radius: 30px 0 90px 0;
 }
 .row{
     flex-flow: row nowrap;

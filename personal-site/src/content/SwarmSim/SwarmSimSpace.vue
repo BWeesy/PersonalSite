@@ -41,26 +41,16 @@
                         return '';
                 }
             },
-            SpaceSize(){
-                return 'height: ' + 50/this.spacesInRow + 'vh ; width: ' + 50/this.spacesInRow + 'vh;';
-            },
-            ExploredOpacity(){
-                return 'opacity: ' + Math.max((this.activity ? this.activity : 0)/100,0.1);
-            },
             getStyle() {
                 switch (this.state) {
                     case 0:
-                        return this.getSpaceSize();
                     case 1:
+                    case 3:
+                    case 4:
+                    case 5:
                         return this.getSpaceSize();
                     case 2:
                         return this.getSpaceSize() + this.getExploredOpacity();
-                    case 3:
-                        return this.getSpaceSize();
-                    case 4:
-                        return this.getSpaceSize();
-                    case 5:
-                        return this.getSpaceSize();
                     default:
                         return "";
                 }
@@ -72,7 +62,7 @@
 <style lang="scss" scoped>
 @import "./swarmsim-palette.scss";
 .space{
-    transition: background-color 0.25s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
 }
 .wall{
     background-color: $wall;
