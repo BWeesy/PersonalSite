@@ -14,10 +14,10 @@
                 </div>
             </div>
         </div>
-        <div v-if="!currentFrame.length > 0">
-            <div class="loader"/>
-            <button v-if="this.$store.state.swarmSimFailed" v-on:click="resetFrame()" class="button"> Retry </button>
-        </div>
+    </div>
+    <div v-if="!currentFrame.length > 0">
+        <div class="loader"/>
+        <button v-if="this.$store.state.swarmSimFailed" v-on:click="resetFrame()" class="button"> Retry </button>
     </div>
 </div>
 </template>
@@ -125,8 +125,6 @@ export default {
 }
 .frame-wrapper {
     margin: 1% 5%;
-    border: 3px solid $highlight-colour;
-    border-radius: 45px 0 102px 0;
 }
 .stat-stick-wrapper {
     float: right;
@@ -139,9 +137,6 @@ export default {
     margin: 0 auto;
     display: flex;
     flex-flow: column nowrap;
-    border: 15px solid $emboss-colour;
-    background-color: $emboss-colour;
-    border-radius: 45px 0 102px 0;
 }
 .row{
     flex-flow: row nowrap;
