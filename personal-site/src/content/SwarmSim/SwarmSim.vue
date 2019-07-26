@@ -125,7 +125,7 @@ export default {
 }
 .frame-wrapper {
     margin: 1% 5%;
-    border: 3px solid $highlight-colour;
+    border: 10px solid $highlight-colour;
     border-radius: 45px 0 102px 0;
 }
 .stat-stick-wrapper {
@@ -141,7 +141,7 @@ export default {
     flex-flow: column nowrap;
     border: 15px solid $emboss-colour;
     background-color: $emboss-colour;
-    border-radius: 45px 0 102px 0;
+    border-radius: 30px 0 90px 0;
 }
 .row{
     flex-flow: row nowrap;
