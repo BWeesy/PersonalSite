@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="stick-wrapper">
     <div class="stats-wrapper">
         <div class="bars-wrapper">
             <div class="bar intended-time-bar" :style = "intendedTimeWidth"/>
@@ -76,6 +76,11 @@ $intended-time-colour: #529e72;
 $call-time-colour: #de356a;
 $wait-time-colour: #fdc8b7;
 $round-trip-time-colour: #f67e7d;
+.stick-wrapper{
+    display: flex;
+    flex-flow: row wrap;
+}
+
 .stats-wrapper{
     float: left;
 }
@@ -85,7 +90,6 @@ $round-trip-time-colour: #f67e7d;
     background-color: $emboss-colour;
     border-radius: 0 0 50px 0;
     padding: 5px 5px 5px 5px;
-    margin: 0 0 0 -12px;
 }
 
 .key-wrapper{
