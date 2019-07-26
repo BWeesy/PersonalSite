@@ -19,17 +19,19 @@
             <button v-if="this.$store.state.swarmSimFailed" v-on:click="resetFrame()" class="button"> Retry </button>
         </div>
     </div>
+    <Description/>
 </div>
 </template>
 
 <script>
 import Row from './SwarmSimRow';
 import StatStick from './SwarmSimStatStick';
+import Description from './SwarmSimDescription'; 
 
 export default {
     name : "SwarmSim",
     components: { 
-        Row, StatStick
+        Row, StatStick, Description
     },
     created() {
         if(!this.$store.state.SwarmSimFrame || this.$store.state.SwarmSimFrame.length == 0){

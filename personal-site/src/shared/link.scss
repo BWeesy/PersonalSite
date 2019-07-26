@@ -1,0 +1,12 @@
+@import "../../shared/colour-palette.scss";
+a{
+    &:link{
+        color: $highlight-colour;
+    }
+    &:visited{
+        color: $highlight-off-colour;
+    }
+    &:hover, &:active{
+        color: $text-colour;
+    }
+}
