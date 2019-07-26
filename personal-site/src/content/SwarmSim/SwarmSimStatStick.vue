@@ -24,7 +24,12 @@
             </div>
         </div>
     </div>
-    <VueKnobControl class="knob" :min="500" :max="1500" primary-color="#529e72" secondary-color="#811c41" text-color="#40d87f" v-model="intendedTime"></VueKnobControl>
+    <VueKnobControl class="knob"
+        v-model="intendedTime"
+        :min="500"
+        :max="1500"
+        primary-color="#529e72" secondary-color="#811c41" text-color="#40d87f">
+    </VueKnobControl>
 </div>
 </template>
 
