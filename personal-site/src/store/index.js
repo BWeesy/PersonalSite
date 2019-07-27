@@ -9,6 +9,7 @@ export default new Vuex.Store({
         SwarmSimFrame: [], //Array of Arrays, closest thing to 2D
         swarmSimRunning : false,
         swarmSimFailed : false,
+        swarmSimFrameRate : 1000,
     },
     mutations:{
         saveNewFrame(state, frame){
@@ -19,17 +20,19 @@ export default new Vuex.Store({
         },
         saveSwarmSimFailureState(state, failed){
             state.swarmSimFailed = failed;
+        },
+        saveSwarmSimFrameRate(state, rate){
+            state.swarmSimFrameRate = rate;
         }
     },
     actions: {
         initFrame({commit}){
-            commit('saveNewFrame', []);
-
             var url = process.env.NODE_ENV == 'development' ? '/api/InitFrame' : 'https://swarmsim.azurewebsites.net/api/InitFrame?code=GiWQXWY1cb/nO4Mw9TOVuElPZGLidWSV0ulanCq6TRTDyKxGwXMI0w==';
             axios.get(url, { crossdomain: true })
             .then(result => {
                 commit('saveNewFrame', result.data);
                 commit('saveSwarmSimFailureState', false);
+                commit('saveSwarmSimFrameRate', 1000);
             })
             .catch(() => {
                 commit('saveSwarmSimRunningState', false);
@@ -54,5 +57,8 @@ export default new Vuex.Store({
         stopSwarmSim({commit}){
             commit('saveSwarmSimRunningState', false);
         },
+        setFrameRate({commit}, rate){
+            commit('saveSwarmSimFrameRate', rate);
+        }
     }
 });

@@ -2,7 +2,7 @@
 <div>
     <div class = "swarmsim-wrapper">
         <div class="stat-stick-wrapper">
-            <StatStick class="stat-stick" :intendedTime = this.intendedRate :callTime = this.getAverageCallTime :waitTime= this.getTimeToWaitBeforeNextFrame :roundTripTime = this.getAverageRoundTripTime />
+            <StatStick class="stat-stick" :callTime = this.getAverageCallTime :waitTime= this.getTimeToWaitBeforeNextFrame :roundTripTime = this.getAverageRoundTripTime />
         </div>
         <div v-if="currentFrame.length > 0" class="frame-wrapper">
             <div class="frame">
@@ -45,12 +45,14 @@ export default {
     },
     data (){
         return {
-            intendedRate : 1000,
             lastFiveCalls : [],
             lastTenRoundTripTimes : []
         }
     },
     computed: {
+        frameRate(){
+            return this.$store.state.swarmSimFrameRate;
+        },
         currentFrame() {
             return this.$store.state.SwarmSimFrame;
         },
@@ -58,7 +60,7 @@ export default {
             return Math.round(this.lastFiveCalls.reduce(function(p,c,i){return p+(c-p)/(i+1)},0));
         },
         getTimeToWaitBeforeNextFrame() {
-            return Math.round(Math.max(this.intendedRate-this.getAverageCallTime,0));
+            return Math.round(Math.max(this.frameRate-this.getAverageCallTime,0));
         },
         getAverageRoundTripTime() {
             return Math.round(this.lastTenRoundTripTimes.reduce(function(p,c,i){return p+(c-p)/(i+1)},0));

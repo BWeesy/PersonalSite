@@ -1,34 +1,46 @@
 <template>
-<div>
-    <div class="bars-wrapper">
-        <div class="bar intended-time-bar" :style = "intendedTimeWidth"/>
-        <div class="total-time-bar">
-            <div class="bar call-time-bar" :style = "callTimeWidth"/>
-            <div class="bar wait-time-bar" :style = "waitTimeWidth"/>
+<div class="stick-wrapper">
+    <div class="stats-wrapper">
+        <div class="bars-wrapper">
+            <div class="bar intended-time-bar" :style = "intendedTimeWidth"/>
+            <div class="total-time-bar">
+                <div class="bar call-time-bar" :style = "callTimeWidth"/>
+                <div class="bar wait-time-bar" :style = "waitTimeWidth"/>
+            </div>
+            <div class="bar round-trip-time-bar" :style = "roundTripTimeWidth"/>
         </div>
-        <div class="bar round-trip-time-bar" :style = "roundTripTimeWidth"/>
+        <div class="key-wrapper">
+            <div class = "label-wrapper">
+                <div class = "swatch intended-swatch"/>
+                <div class="label intended-label">Time per frame <br/> {{intendedTime}} ms</div>
+                <div class = "swatch round-trip-swatch"/>
+                <div class="label round-trip-label">Round trip time <br/> {{roundTripTime}} ms </div>
+            </div>
+            <div class = "label-wrapper">
+                <div class = "swatch call-swatch"/>
+                <div class="label call-label">Response time <br/> {{callTime}} ms</div>
+                <div class = "swatch wait-swatch"/>
+                <div class="label wait-label">Waiting time <br/> {{waitTime}} ms</div>
+            </div>
+        </div>
     </div>
-    <div class="key-wrapper">
-        <div class = "label-wrapper">
-            <div class = "swatch intended-swatch"/>
-            <div class="label intended-label">Intended time <br/> {{intendedTime}} ms</div>
-            <div class = "swatch call-swatch"/>
-            <div class="label call-label">Request time <br/> {{callTime}} ms</div>
-        </div>
-        <div class = "label-wrapper">
-            <div class = "swatch wait-swatch"/>
-            <div class="label wait-label">Waiting time <br/> {{waitTime}} ms</div>
-            <div class = "swatch round-trip-swatch"/>
-            <div class="label round-trip-label">Round trip time <br/> {{roundTripTime}} ms </div>
-        </div>
-    </div>
+    <VueKnobControl class="knob"
+        v-model="intendedTime"
+        :min="500"
+        :max="1500"
+        primary-color="#529e72" secondary-color="#811c41" text-color="#40d87f">
+    </VueKnobControl>
 </div>
 </template>
 
 <script>
+import VueKnobControl from 'vue-knob-control'
     export default {
         name:'StatStick',
-        props: ['intendedTime', 'callTime', 'waitTime', 'roundTripTime'],
+        props: ['callTime', 'waitTime', 'roundTripTime'],
+        components : {
+            VueKnobControl,
+        },
         computed:{
             callTimeWidth() {
                 return 'width: ' + 100 * this.callTime/this.maximumTime + '%';
@@ -44,7 +56,15 @@
             },
             maximumTime(){
                 return Math.max(this.intendedTime, this.roundTripTime, this.callTime, this.waitTime);
-            },            
+            },
+            intendedTime:{
+                get(){
+                    return this.$store.state.swarmSimFrameRate;
+                },
+                set(rate){
+                    this.$store.commit('saveSwarmSimFrameRate', rate);
+                }
+            },
         }
     }
 </script>
@@ -52,10 +72,25 @@
 <style lang="scss" scoped>
 @import "../../shared/colour-palette.scss";
 
-$intended-time-colour: #6e9086;
+$intended-time-colour: #529e72;
 $call-time-colour: #de356a;
 $wait-time-colour: #fdc8b7;
 $round-trip-time-colour: #f67e7d;
+.stick-wrapper{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.stats-wrapper{
+    float: left;
+}
+
+.knob{
+    float: right;
+    background-color: $emboss-colour;
+    border-radius: 0 0 50px 0;
+    padding: 5px 5px 5px 5px;
+}
 
 .key-wrapper{
     background-color: $emboss-colour;
