@@ -62,7 +62,7 @@
 <style lang="scss" scoped>
 @import "./swarmsim-palette.scss";
 .space{
-    transition: background-color 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 .wall{
     background-color: $wall;
