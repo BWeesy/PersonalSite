@@ -34,7 +34,7 @@
                     case 3:
                         return 'space ungrouped-drone';
                     case 4:
-                        return 'space leader-drone';
+                        return 'space predator-drone';
                     case 5:
                         return 'space subordinate-drone';
                     default:
@@ -76,8 +76,8 @@
 .ungrouped-drone{
     background-color:$ungrouped-drone;
 }
-.leader-drone{
-    background-color:$leader-drone;
+.predator-drone{
+    background-color:$predator-drone;
 }
 .subordinate-drone{
     background-color:$subordinate-drone;
