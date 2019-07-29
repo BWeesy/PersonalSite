@@ -34,7 +34,7 @@
                     case 3:
                         return 'space ungrouped-drone';
                     case 4:
-                        return 'space leader-drone';
+                        return 'space predator-drone';
                     case 5:
                         return 'space subordinate-drone';
                     default:
@@ -62,7 +62,7 @@
 <style lang="scss" scoped>
 @import "./swarmsim-palette.scss";
 .space{
-    transition: background-color 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 .wall{
     background-color: $wall;
@@ -76,8 +76,8 @@
 .ungrouped-drone{
     background-color:$ungrouped-drone;
 }
-.leader-drone{
-    background-color:$leader-drone;
+.predator-drone{
+    background-color:$predator-drone;
 }
 .subordinate-drone{
     background-color:$subordinate-drone;
