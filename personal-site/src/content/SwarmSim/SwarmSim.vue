@@ -90,10 +90,17 @@ export default {
                                 var roundTripEnd = new Date();
                                 this.AddToTimesTakenBuffer(callEnd - callStart);
                                 this.AddToRoundTripBuffer(roundTripEnd - roundTripStart);
-                                this.getNextFrame();
+                                if(this.preyDronesLeft()){
+                                    this.getNextFrame();
+                                } else{
+                                    this.resetFrame();
+                                }
                             }
                         });
                 });
+        },
+        preyDronesLeft(){
+            return this.$store.state.SwarmSimFrame.filter( r => r.some(e => e.State == 3)).length;
         },
         resetFrame() {
             this.stopSim();
