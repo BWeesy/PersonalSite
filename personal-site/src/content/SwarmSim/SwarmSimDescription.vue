@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class = "swarmsim-description">
     <h1> Swarm Sim </h1>
     <p>
     The swarm sim is a simple problem that in itself doesn't do anything useful. It is however a useful testbed to try a lot of different technologies at once, all of which are virtually free with the Free Trial Azure subscription.
